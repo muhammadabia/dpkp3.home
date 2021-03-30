@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
     <link rel="stylesheet" href="css/style.css">
-    <!-- From leaflet -->
+<!-- From leaflet -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="css/leaflet-search.css">
     <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
     <link rel="stylesheet" href="css/leaflet-measure.css">
-    <!-- End From leaflet -->
+<!-- End From leaflet -->
     <title>DPKP3 - Database Rumah Bersanitasi</title>
 </head>
 <body>
@@ -70,6 +70,11 @@
             <script src="data/TitikSanitasiSWKBojonegara_11.js"></script>
             <script src="data/TitikSanitasiSWKCibeunying_12.js"></script>
             <script src="data/TitikSanitasiSWKTegallega_13.js"></script>
+
+<!-- Menambahkan module easy print -->
+            <script src="node_modules/leaflet-easyprint/dist/bundle.js"></script>
+<!-- Akhir menambahkan module easy print -->
+
             <script>
             var map = L.map('map', {
                 zoomControl:true, maxZoom:28, minZoom:1
@@ -86,22 +91,18 @@
                 secondaryAreaUnit: 'hectares'
             });
             measureControl.addTo(map);
-// Menambahkan print function //
-            // var printProvider = L.print.provider({
-            // method: 'GET',
-            // url: ' http://path/to/mapfish/print',
-            // autoLoad: true,
-            // dpi: 90
-            // });
 
-            // var printControl = L.control.print({
-            // provider: printProvider
-            // });        
-            // map.addControl(printControl);
-
-
-
-// akhir menambahkan print function //
+// Menambahkan module print (Harus dibawah var map) //
+            L.easyPrint({
+	        title: 'Print Map',
+            position: 'topleft',
+            exportOnly: false,
+            filename:'Peta Rumah Bersanitasi',
+            hideControlContainer: false,
+            customWindowTitle: 'Peta Rumah Bersanitasi',
+            sizeModes: ['A4Portrait', 'A4Landscape']
+            }).addTo(map);
+// Akhir Menambahkan module easy print //
 
 // Menambahkan basemap//
             var basemap0 = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {maxZoom: 20,
@@ -137,7 +138,7 @@
                 return this._div;
                 };
                 basemap1.addTo(map);
-                 // L.control.layers(baseMaps).addTo(map);
+                //  L.control.layers(baseMaps).addTo(map);
                 
 // Akhir menambahkan basemap//
 
