@@ -41,7 +41,8 @@
             </div>
         </div>
         <div id="map"></div>
-            <!-- From leaflet -->
+
+<!-- From leaflet -->
             <script src="js/qgis2web_expressions.js"></script>
             <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
             <script src="js/leaflet.rotatedMarker.js"></script>
@@ -85,42 +86,59 @@
                 secondaryAreaUnit: 'hectares'
             });
             measureControl.addTo(map);
+// Menambahkan print function //
+            // var printProvider = L.print.provider({
+            // method: 'GET',
+            // url: ' http://path/to/mapfish/print',
+            // autoLoad: true,
+            // dpi: 90
+            // });
+
+            // var printControl = L.control.print({
+            // provider: printProvider
+            // });        
+            // map.addControl(printControl);
+
+
+
+// akhir menambahkan print function //
 
 // Menambahkan basemap//
-var basemap0 = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {maxZoom: 20,
-    subdomains:['mt0','mt1','mt2','mt3'],
-    attribution: 'Google Terrain'
-    }); 
-    
-    var basemap1 = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {maxZoom: 20,
-    subdomains:['mt0','mt1','mt2','mt3'],
-    attribution: 'Google Satellite'
-    });
-    
-    var basemap2 = L.tileLayer('http://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {maxZoom: 20,
-    subdomains:['mt0','mt1','mt2','mt3'],
-    attribution: 'Google Hybrid'
-    });
-    var basemap3 = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
-            maxZoom: 28
-        });
+            var basemap0 = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {maxZoom: 20,
+             subdomains:['mt0','mt1','mt2','mt3'],
+            attribution: 'Google Terrain'
+            }); 
+            
+            var basemap1 = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {maxZoom: 20,
+            subdomains:['mt0','mt1','mt2','mt3'],
+            attribution: 'Google Satellite'
+            });
+            
+            var basemap2 = L.tileLayer('http://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {maxZoom: 20,
+            subdomains:['mt0','mt1','mt2','mt3'],
+            attribution: 'Google Hybrid'
+            });
+            var basemap3 = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
+            maxZoom: 28,
+                });
 
-       var baseMaps ={
-              'Google Terrain': basemap0,
-              'Google Satellite': basemap1,
-              'Google Hybrid': basemap2,
-              'Esri Satellite': basemap3,
-            }
-        ;
-        var title = new L.Control();
-        title.onAdd = function (map) {
-           this._div = L.DomUtil.create('div', 'info');
-           this.update();
-           return this._div;
-        };
-    // L.control.layers(baseMaps).addTo(map);
-    // basemap1.addTo(map);
+            var baseMaps ={
+                    'Google Terrain': basemap0,
+                    'Google Satellite': basemap1,
+                    'Google Hybrid': basemap2,
+                    'Esri Satellite': basemap3,
+                    }
+                ;
+                var title = new L.Control();
+                title.onAdd = function (map) {
+                this._div = L.DomUtil.create('div', 'info');
+                this.update();
+                return this._div;
+                };
+                basemap1.addTo(map);
+                 // L.control.layers(baseMaps).addTo(map);
+                
 // Akhir menambahkan basemap//
 
             document.getElementsByClassName('leaflet-control-measure-toggle')[0]
